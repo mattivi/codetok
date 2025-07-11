@@ -1,0 +1,114 @@
+{
+  "timestamp": "2025-07-11T13:31:18.702484",
+  "analysis_info": {
+    "tokenizer": "cl100k_base",
+    "excluded_directories": []
+  },
+  "summary": {
+    "total_files": 2,
+    "total_lines": 359,
+    "total_sloc": 358,
+    "total_comments": 0,
+    "total_blank": 1,
+    "total_tokens": 2482,
+    "total_size_bytes": 9131
+  },
+  "categories": {
+    "code": {
+      "icon": "💻",
+      "total_files": 1,
+      "total_lines": 6,
+      "total_sloc": 5,
+      "total_comments": 0,
+      "total_blank": 1,
+      "total_tokens": 63,
+      "total_size_bytes": 305,
+      "avg_lines_per_file": 6.0,
+      "avg_tokens_per_file": 63.0,
+      "extension_breakdown": {
+        ".py": {
+          "name": "Python",
+          "files": 1,
+          "lines": 6,
+          "tokens": 63,
+          "size_bytes": 305
+        }
+      },
+      "files": [
+        {
+          "path": "examples/analyze_sample.py",
+          "extension": ".py",
+          "extension_name": "Python",
+          "lines_total": 6,
+          "lines_code": 5,
+          "lines_comments": 0,
+          "lines_blank": 1,
+          "tokens": 63,
+          "size_bytes": 305
+        }
+      ]
+    },
+    "documentation": {
+      "icon": "📚",
+      "total_files": 0,
+      "total_lines": 0,
+      "total_sloc": 0,
+      "total_comments": 0,
+      "total_blank": 0,
+      "total_tokens": 0,
+      "total_size_bytes": 0,
+      "avg_lines_per_file": 0,
+      "avg_tokens_per_file": 0,
+      "extension_breakdown": {},
+      "files": []
+    },
+    "config": {
+      "icon": "⚙️",
+      "total_files": 1,
+      "total_lines": 353,
+      "total_sloc": 353,
+      "total_comments": 0,
+      "total_blank": 0,
+      "total_tokens": 2419,
+      "total_size_bytes": 8826,
+      "avg_lines_per_file": 353.0,
+      "avg_tokens_per_file": 2419.0,
+      "extension_breakdown": {
+        ".json": {
+          "name": "JSON",
+          "files": 1,
+          "lines": 353,
+          "tokens": 2419,
+          "size_bytes": 8826
+        }
+      },
+      "files": [
+        {
+          "path": "examples/sample_report.json",
+          "extension": ".json",
+          "extension_name": "JSON",
+          "lines_total": 353,
+          "lines_code": 353,
+          "lines_comments": 0,
+          "lines_blank": 0,
+          "tokens": 2419,
+          "size_bytes": 8826
+        }
+      ]
+    },
+    "other": {
+      "icon": "📦",
+      "total_files": 0,
+      "total_lines": 0,
+      "total_sloc": 0,
+      "total_comments": 0,
+      "total_blank": 0,
+      "total_tokens": 0,
+      "total_size_bytes": 0,
+      "avg_lines_per_file": 0,
+      "avg_tokens_per_file": 0,
+      "extension_breakdown": {},
+      "files": []
+    }
+  }
+}

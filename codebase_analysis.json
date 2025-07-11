@@ -1,0 +1,477 @@
+{
+  "timestamp": "2025-07-11T19:53:55.203249",
+  "analysis_info": {
+    "tokenizer": "cl100k_base",
+    "excluded_directories": []
+  },
+  "summary": {
+    "total_files": 31,
+    "total_lines": 3026,
+    "total_sloc": 10360,
+    "total_comments": 107,
+    "total_blank": 125,
+    "total_tokens": 22071,
+    "total_size_bytes": 95013
+  },
+  "categories": {
+    "code": {
+      "icon": "💻",
+      "total_files": 16,
+      "total_lines": 1819,
+      "total_sloc": 9278,
+      "total_comments": 107,
+      "total_blank": 0,
+      "total_tokens": 13273,
+      "total_size_bytes": 61844,
+      "avg_lines_per_file": 113.6875,
+      "avg_tokens_per_file": 829.5625,
+      "extension_breakdown": {
+        ".py": {
+          "name": "Python",
+          "files": 16,
+          "lines": 1819,
+          "tokens": 13273,
+          "size_bytes": 61844
+        }
+      },
+      "files": [
+        {
+          "path": "codetok/config.py",
+          "extension": ".py",
+          "extension_name": "Python",
+          "lines_total": 77,
+          "lines_code": 474,
+          "lines_comments": 3,
+          "lines_blank": 0,
+          "tokens": 653,
+          "size_bytes": 2702
+        },
+        {
+          "path": "codetok/formatters.py",
+          "extension": ".py",
+          "extension_name": "Python",
+          "lines_total": 270,
+          "lines_code": 2106,
+          "lines_comments": 8,
+          "lines_blank": 0,
+          "tokens": 2390,
+          "size_bytes": 11777
+        },
+        {
+          "path": "codetok/ui.py",
+          "extension": ".py",
+          "extension_name": "Python",
+          "lines_total": 125,
+          "lines_code": 633,
+          "lines_comments": 0,
+          "lines_blank": 0,
+          "tokens": 913,
+          "size_bytes": 3480
+        },
+        {
+          "path": "codetok/analyzer.py",
+          "extension": ".py",
+          "extension_name": "Python",
+          "lines_total": 190,
+          "lines_code": 876,
+          "lines_comments": 17,
+          "lines_blank": 0,
+          "tokens": 1358,
+          "size_bytes": 7338
+        },
+        {
+          "path": "codetok/__init__.py",
+          "extension": ".py",
+          "extension_name": "Python",
+          "lines_total": 9,
+          "lines_code": 45,
+          "lines_comments": 0,
+          "lines_blank": 0,
+          "tokens": 75,
+          "size_bytes": 287
+        },
+        {
+          "path": "codetok/parser.py",
+          "extension": ".py",
+          "extension_name": "Python",
+          "lines_total": 302,
+          "lines_code": 1475,
+          "lines_comments": 18,
+          "lines_blank": 0,
+          "tokens": 2083,
+          "size_bytes": 8970
+        },
+        {
+          "path": "codetok/cli.py",
+          "extension": ".py",
+          "extension_name": "Python",
+          "lines_total": 120,
+          "lines_code": 411,
+          "lines_comments": 5,
+          "lines_blank": 0,
+          "tokens": 755,
+          "size_bytes": 3503
+        },
+        {
+          "path": "codetok/utils.py",
+          "extension": ".py",
+          "extension_name": "Python",
+          "lines_total": 26,
+          "lines_code": 151,
+          "lines_comments": 0,
+          "lines_blank": 0,
+          "tokens": 220,
+          "size_bytes": 799
+        },
+        {
+          "path": "codetok/__main__.py",
+          "extension": ".py",
+          "extension_name": "Python",
+          "lines_total": 6,
+          "lines_code": 16,
+          "lines_comments": 0,
+          "lines_blank": 0,
+          "tokens": 29,
+          "size_bytes": 108
+        },
+        {
+          "path": "tests/test_parser.py",
+          "extension": ".py",
+          "extension_name": "Python",
+          "lines_total": 185,
+          "lines_code": 799,
+          "lines_comments": 6,
+          "lines_blank": 0,
+          "tokens": 1237,
+          "size_bytes": 5695
+        },
+        {
+          "path": "tests/test_basic.py",
+          "extension": ".py",
+          "extension_name": "Python",
+          "lines_total": 18,
+          "lines_code": 117,
+          "lines_comments": 1,
+          "lines_blank": 0,
+          "tokens": 151,
+          "size_bytes": 626
+        },
+        {
+          "path": "tests/test_advanced.py",
+          "extension": ".py",
+          "extension_name": "Python",
+          "lines_total": 323,
+          "lines_code": 1459,
+          "lines_comments": 36,
+          "lines_blank": 0,
+          "tokens": 2291,
+          "size_bytes": 11247
+        },
+        {
+          "path": "tests/test_config.py",
+          "extension": ".py",
+          "extension_name": "Python",
+          "lines_total": 61,
+          "lines_code": 291,
+          "lines_comments": 1,
+          "lines_blank": 0,
+          "tokens": 408,
+          "size_bytes": 2008
+        },
+        {
+          "path": "tests/test_cli.py",
+          "extension": ".py",
+          "extension_name": "Python",
+          "lines_total": 63,
+          "lines_code": 270,
+          "lines_comments": 2,
+          "lines_blank": 0,
+          "tokens": 385,
+          "size_bytes": 1807
+        },
+        {
+          "path": "docs/conf.py",
+          "extension": ".py",
+          "extension_name": "Python",
+          "lines_total": 35,
+          "lines_code": 93,
+          "lines_comments": 10,
+          "lines_blank": 0,
+          "tokens": 240,
+          "size_bytes": 1104
+        },
+        {
+          "path": "examples/analyze_sample.py",
+          "extension": ".py",
+          "extension_name": "Python",
+          "lines_total": 9,
+          "lines_code": 62,
+          "lines_comments": 0,
+          "lines_blank": 0,
+          "tokens": 85,
+          "size_bytes": 393
+        }
+      ]
+    },
+    "documentation": {
+      "icon": "📚",
+      "total_files": 10,
+      "total_lines": 349,
+      "total_sloc": 247,
+      "total_comments": 0,
+      "total_blank": 102,
+      "total_tokens": 2695,
+      "total_size_bytes": 11846,
+      "avg_lines_per_file": 34.9,
+      "avg_tokens_per_file": 269.5,
+      "extension_breakdown": {
+        ".md": {
+          "name": "Markdown",
+          "files": 8,
+          "lines": 324,
+          "tokens": 2540,
+          "size_bytes": 11247
+        },
+        ".txt": {
+          "name": "Plain Text",
+          "files": 1,
+          "lines": 2,
+          "tokens": 14,
+          "size_bytes": 22
+        },
+        ".rst": {
+          "name": "reStructuredText",
+          "files": 1,
+          "lines": 23,
+          "tokens": 141,
+          "size_bytes": 577
+        }
+      },
+      "files": [
+        {
+          "path": "CODE_OF_CONDUCT.md",
+          "extension": ".md",
+          "extension_name": "Markdown",
+          "lines_total": 43,
+          "lines_code": 27,
+          "lines_comments": 0,
+          "lines_blank": 16,
+          "tokens": 480,
+          "size_bytes": 2633
+        },
+        {
+          "path": "requirements.txt",
+          "extension": ".txt",
+          "extension_name": "Plain Text",
+          "lines_total": 2,
+          "lines_code": 2,
+          "lines_comments": 0,
+          "lines_blank": 0,
+          "tokens": 14,
+          "size_bytes": 22
+        },
+        {
+          "path": "CHANGELOG.md",
+          "extension": ".md",
+          "extension_name": "Markdown",
+          "lines_total": 10,
+          "lines_code": 7,
+          "lines_comments": 0,
+          "lines_blank": 3,
+          "tokens": 97,
+          "size_bytes": 400
+        },
+        {
+          "path": "README.md",
+          "extension": ".md",
+          "extension_name": "Markdown",
+          "lines_total": 146,
+          "lines_code": 101,
+          "lines_comments": 0,
+          "lines_blank": 45,
+          "tokens": 1129,
+          "size_bytes": 4711
+        },
+        {
+          "path": "CONTRIBUTING.md",
+          "extension": ".md",
+          "extension_name": "Markdown",
+          "lines_total": 46,
+          "lines_code": 36,
+          "lines_comments": 0,
+          "lines_blank": 10,
+          "tokens": 393,
+          "size_bytes": 1582
+        },
+        {
+          "path": "SECURITY.md",
+          "extension": ".md",
+          "extension_name": "Markdown",
+          "lines_total": 10,
+          "lines_code": 6,
+          "lines_comments": 0,
+          "lines_blank": 4,
+          "tokens": 71,
+          "size_bytes": 318
+        },
+        {
+          "path": "docs/index.rst",
+          "extension": ".rst",
+          "extension_name": "reStructuredText",
+          "lines_total": 23,
+          "lines_code": 16,
+          "lines_comments": 0,
+          "lines_blank": 7,
+          "tokens": 141,
+          "size_bytes": 577
+        },
+        {
+          "path": ".github/PULL_REQUEST_TEMPLATE.md",
+          "extension": ".md",
+          "extension_name": "Markdown",
+          "lines_total": 18,
+          "lines_code": 13,
+          "lines_comments": 0,
+          "lines_blank": 5,
+          "tokens": 77,
+          "size_bytes": 307
+        },
+        {
+          "path": ".github/ISSUE_TEMPLATE/feature_request.md",
+          "extension": ".md",
+          "extension_name": "Markdown",
+          "lines_total": 20,
+          "lines_code": 15,
+          "lines_comments": 0,
+          "lines_blank": 5,
+          "tokens": 121,
+          "size_bytes": 613
+        },
+        {
+          "path": ".github/ISSUE_TEMPLATE/bug_report.md",
+          "extension": ".md",
+          "extension_name": "Markdown",
+          "lines_total": 31,
+          "lines_code": 24,
+          "lines_comments": 0,
+          "lines_blank": 7,
+          "tokens": 172,
+          "size_bytes": 683
+        }
+      ]
+    },
+    "config": {
+      "icon": "⚙️",
+      "total_files": 5,
+      "total_lines": 858,
+      "total_sloc": 835,
+      "total_comments": 0,
+      "total_blank": 23,
+      "total_tokens": 6103,
+      "total_size_bytes": 21323,
+      "avg_lines_per_file": 171.6,
+      "avg_tokens_per_file": 1220.6,
+      "extension_breakdown": {
+        ".json": {
+          "name": "JSON",
+          "files": 2,
+          "lines": 591,
+          "tokens": 4175,
+          "size_bytes": 15108
+        },
+        ".yaml": {
+          "name": "YAML",
+          "files": 1,
+          "lines": 50,
+          "tokens": 386,
+          "size_bytes": 1213
+        },
+        ".toml": {
+          "name": "TOML",
+          "files": 1,
+          "lines": 147,
+          "tokens": 1055,
+          "size_bytes": 3309
+        },
+        ".yml": {
+          "name": "YAML",
+          "files": 1,
+          "lines": 70,
+          "tokens": 487,
+          "size_bytes": 1693
+        }
+      },
+      "files": [
+        {
+          "path": "test_analysis.json",
+          "extension": ".json",
+          "extension_name": "JSON",
+          "lines_total": 114,
+          "lines_code": 114,
+          "lines_comments": 0,
+          "lines_blank": 0,
+          "tokens": 809,
+          "size_bytes": 2669
+        },
+        {
+          "path": ".pre-commit-config.yaml",
+          "extension": ".yaml",
+          "extension_name": "YAML",
+          "lines_total": 50,
+          "lines_code": 44,
+          "lines_comments": 0,
+          "lines_blank": 6,
+          "tokens": 386,
+          "size_bytes": 1213
+        },
+        {
+          "path": "pyproject.toml",
+          "extension": ".toml",
+          "extension_name": "TOML",
+          "lines_total": 147,
+          "lines_code": 135,
+          "lines_comments": 0,
+          "lines_blank": 12,
+          "tokens": 1055,
+          "size_bytes": 3309
+        },
+        {
+          "path": "codebase_analysis.json",
+          "extension": ".json",
+          "extension_name": "JSON",
+          "lines_total": 477,
+          "lines_code": 477,
+          "lines_comments": 0,
+          "lines_blank": 0,
+          "tokens": 3366,
+          "size_bytes": 12439
+        },
+        {
+          "path": ".github/workflows/ci.yml",
+          "extension": ".yml",
+          "extension_name": "YAML",
+          "lines_total": 70,
+          "lines_code": 65,
+          "lines_comments": 0,
+          "lines_blank": 5,
+          "tokens": 487,
+          "size_bytes": 1693
+        }
+      ]
+    },
+    "other": {
+      "icon": "📦",
+      "total_files": 0,
+      "total_lines": 0,
+      "total_sloc": 0,
+      "total_comments": 0,
+      "total_blank": 0,
+      "total_tokens": 0,
+      "total_size_bytes": 0,
+      "avg_lines_per_file": 0,
+      "avg_tokens_per_file": 0,
+      "extension_breakdown": {},
+      "files": []
+    }
+  }
+}

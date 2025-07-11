@@ -1,0 +1,2 @@
+tiktoken
+tqdm>=4.64.0
