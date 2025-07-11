@@ -23,6 +23,7 @@ from .parser import (
 from .ui import Colors, Icons, Logger
 from .utils import format_number, format_size
 
+
 # Dataclass for numeric extension stats
 @dataclass
 class ExtStats:
@@ -148,7 +149,8 @@ class JSONFormatter:
                         "lines": stats.lines,
                         "tokens": stats.tokens,
                         "size_bytes": stats.size_bytes,
-                    } for ext, stats in ext_stats.items()
+                    }
+                    for ext, stats in ext_stats.items()
                 },
                 "files": [
                     {
