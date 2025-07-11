@@ -3,7 +3,11 @@
 import tempfile
 from pathlib import Path
 
-from codetok.parser import count_lines_by_type, get_all_extensions, process_file
+from codetok.parser import (
+    count_lines_by_type,
+    get_all_extensions,
+    process_file,
+)
 
 
 class TestLineCountingByType:
@@ -111,7 +115,9 @@ class TestFileProcessing:
 
     def test_process_empty_file(self) -> None:
         """Test processing empty file."""
-        with tempfile.NamedTemporaryFile(mode="w", suffix=".py", delete=False) as f:
+        with tempfile.NamedTemporaryFile(
+            mode="w", suffix=".py", delete=False
+        ) as f:
             f.write("")
             temp_path = f.name
 
@@ -137,7 +143,9 @@ def hello():
 if __name__ == "__main__":
     hello()
 '''
-        with tempfile.NamedTemporaryFile(mode="w", suffix=".py", delete=False) as f:
+        with tempfile.NamedTemporaryFile(
+            mode="w", suffix=".py", delete=False
+        ) as f:
             f.write(python_content)
             temp_path = f.name
 
@@ -155,7 +163,9 @@ if __name__ == "__main__":
 
     def test_process_binary_file(self) -> None:
         """Test handling of binary files."""
-        with tempfile.NamedTemporaryFile(mode="wb", suffix=".bin", delete=False) as f:
+        with tempfile.NamedTemporaryFile(
+            mode="wb", suffix=".bin", delete=False
+        ) as f:
             f.write(b"\x00\x01\x02")
             temp_path = f.name
 
@@ -173,7 +183,9 @@ if __name__ == "__main__":
     def test_encoding_fallback(self) -> None:
         """Test encoding fallback works."""
         content = " café ".encode("latin-1")
-        with tempfile.NamedTemporaryFile(mode="wb", suffix=".txt", delete=False) as f:
+        with tempfile.NamedTemporaryFile(
+            mode="wb", suffix=".txt", delete=False
+        ) as f:
             f.write(content)
             temp_path = f.name
 

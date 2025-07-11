@@ -1,11 +1,10 @@
 """Output formatters for codetok."""
 
 import json
-from collections import defaultdict
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
-from typing import Any, DefaultDict, Dict, List, Union, cast
+from typing import Any, Dict, List
 
 try:
     import matplotlib.pyplot as plt
@@ -85,7 +84,9 @@ def categorize_files(file_stats: List[FileStats]) -> Dict[str, CategoryStats]:
 class JSONFormatter:
     """Format results as JSON."""
 
-    def format(self, categories: Dict[str, CategoryStats], output_file: str) -> None:
+    def format(
+        self, categories: Dict[str, CategoryStats], output_file: str
+    ) -> None:
         """Save analysis results to JSON file."""
         timestamp = datetime.now().isoformat()
 
@@ -156,10 +157,12 @@ class JSONFormatter:
                     {
                         "path": str(f.path),
                         "extension": f.extension,
-                        "extension_name": CODE_EXTENSIONS.get(f.extension)
-                        or DOCUMENTATION_EXTENSIONS.get(f.extension)
-                        or CONFIG_EXTENSIONS.get(f.extension)
-                        or f.extension,
+                        "extension_name": (
+                            CODE_EXTENSIONS.get(f.extension)
+                            or DOCUMENTATION_EXTENSIONS.get(f.extension)
+                            or CONFIG_EXTENSIONS.get(f.extension)
+                            or f.extension
+                        ),
                         "lines_total": f.lines_total,
                         "lines_code": f.lines_code,
                         "lines_comments": f.lines_comments,
@@ -190,7 +193,8 @@ class ConsoleFormatter:
         total_tokens = sum(cat.total_tokens for cat in categories.values())
 
         Logger.info(
-            f"OpenAI Tokenizer: {Colors.BOLD}cl100k_base{Colors.ENDC} (GPT-4/GPT-3.5-turbo compatible)"
+            f"OpenAI Tokenizer: {Colors.BOLD}cl100k_base{Colors.ENDC} "
+            "(GPT-4/GPT-3.5-turbo compatible)"
         )
 
         # Token distribution by category
@@ -205,7 +209,8 @@ class ConsoleFormatter:
                 )
                 Logger.stat(
                     f"{category.icon} {category.name}",
-                    f"{format_number(category.total_tokens)} tokens ({percentage:.1f}%)",
+                    f"{format_number(category.total_tokens)} tokens "
+                    f"({percentage:.1f}%)",
                 )
 
     def _print_detailed_analysis(self, categories: Dict[str, CategoryStats]) -> None:
@@ -274,7 +279,9 @@ class ChartFormatter:
     def format(self, categories: Dict[str, CategoryStats]) -> None:
         """Generate charts if matplotlib is available."""
         if not HAS_MATPLOTLIB:
-            Logger.warning("matplotlib not installed. Skipping chart generation.")
+            Logger.warning(
+                "matplotlib not installed. Skipping chart generation."
+            )
             return
 
         Logger.info("Generating analysis charts...")

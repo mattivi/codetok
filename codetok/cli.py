@@ -63,7 +63,9 @@ Examples:
 
     # Processing options
     parser.add_argument(
-        "--no-parallel", action="store_true", help="Disable parallel processing"
+        "--no-parallel",
+        action="store_true",
+        help="Disable parallel processing",
     )
 
     parser.add_argument(
@@ -82,7 +84,9 @@ Examples:
         help="Generate visual charts of the analysis (requires matplotlib)",
     )
 
-    parser.add_argument("--version", action="version", version="%(prog)s 0.1.0")
+    parser.add_argument(
+        "--version", action="version", version="%(prog)s 0.1.0"
+    )
 
     return parser
 
