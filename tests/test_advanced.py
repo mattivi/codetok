@@ -2,9 +2,9 @@ import json
 import os
 import tempfile
 from pathlib import Path
+from typing import Any
 
 import pytest
-from typing import Any
 
 from codetok.analyzer import CodeAnalyzer
 from codetok.config import Config

@@ -1,11 +1,11 @@
 """Output formatters for codetok."""
 
 import json
-from datetime import datetime
-from pathlib import Path
-from typing import Dict, List, Union, Any, DefaultDict, cast
 from collections import defaultdict
 from dataclasses import dataclass
+from datetime import datetime
+from pathlib import Path
+from typing import Any, DefaultDict, Dict, List, Union, cast
 
 try:
     import matplotlib.pyplot as plt
