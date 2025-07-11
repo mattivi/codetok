@@ -4,6 +4,7 @@ import json
 from codetok.analyzer import CodeAnalyzer
 from codetok.config import Config
 
+
 def test_analyze_codebase_creates_json(tmp_path):
     output_file = tmp_path / "report.json"
     config = Config(path=".", output_file=str(output_file), json_only=True)
