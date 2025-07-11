@@ -34,7 +34,7 @@ We welcome all contributions, big or small. Please read the following guidelines
 - Be responsive to code review feedback.
 
 ## Reporting Issues
-- Use the [issue tracker](https://github.com/riccardo/LoC/issues) for bugs, features, or questions.
+- Use the [issue tracker](https://github.com/mattivi/codetok/issues) for bugs, features, or questions.
 - Include steps to reproduce, expected behavior, and screenshots/logs if helpful.
 
 ## Community

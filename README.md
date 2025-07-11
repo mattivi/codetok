@@ -1,6 +1,6 @@
 # codetok
 
-[![Build Status](https://github.com/riccardo/LoC/actions/workflows/ci.yml/badge.svg)](https://github.com/riccardo/LoC/actions)
+[![Build Status](https://github.com/mattivi/codetok/actions/workflows/ci.yml/badge.svg)](https://github.com/mattivi/codetok/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![PyPI version](https://badge.fury.io/py/codetok.svg)](https://badge.fury.io/py/codetok)
 [![codecov](https://codecov.io/gh/riccardo/LoC/branch/main/graph/badge.svg)](https://codecov.io/gh/riccardo/LoC)
@@ -43,8 +43,8 @@ pip install codetok
 Or clone and install locally:
 
 ```bash
-git clone https://github.com/riccardo/LoC.git
-cd LoC
+git clone https://github.com/mattivi/codetok.git
+cd codetok
 pip install .
 ```
 

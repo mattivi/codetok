@@ -35,9 +35,9 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/riccardo/LoC"
-Repository = "https://github.com/riccardo/LoC"
-Issues = "https://github.com/riccardo/LoC/issues"
+Homepage = "https://github.com/mattivi/codetok"
+Repository = "https://github.com/mattivi/codetok"
+Issues = "https://github.com/mattivi/codetok/issues"
 
 [project.scripts]
 codetok = "codetok.cli:main"
