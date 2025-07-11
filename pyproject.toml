@@ -26,7 +26,7 @@ classifiers = [
     "Topic :: Software Development :: Testing",
     "Topic :: Utilities",
 ]
-keywords = ["code analysis", "sloc", "loc", "tokens", "openai", "codebase"]
+keywords = ["code analysis", "sloc", "loc", "tokens", "tokenizer", "openai", "codebase"]
 dependencies = [
     "tiktoken",
     "tqdm>=4.64.0",

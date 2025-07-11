@@ -3,7 +3,7 @@
 [![Build Status](https://github.com/mattivi/codetok/actions/workflows/ci.yml/badge.svg)](https://github.com/mattivi/codetok/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![PyPI version](https://badge.fury.io/py/codetok.svg)](https://badge.fury.io/py/codetok)
-[![codecov](https://codecov.io/gh/riccardo/LoC/branch/main/graph/badge.svg)](https://codecov.io/gh/riccardo/LoC)
+[![codecov](https://codecov.io/gh/mattivi/codetok/branch/main/graph/badge.svg)](https://codecov.io/gh/mattivi/codetok)
 [![Downloads](https://pepy.tech/badge/codetok)](https://pepy.tech/project/codetok)
 
 > **codetok** is a blazing-fast, extensible codebase analysis tool that counts lines of code, comments, blank lines, and OpenAI tokens across your project. Designed for developers, researchers, and open source maintainers who want deep insight into their codebase.
@@ -104,7 +104,7 @@ codetok --help
 
 ```
 ════════════════════════════════════════════════════════════════════════════════
-🔍 CODEBASE ANALYSIS TOOL
+🔍 CODETOK ANALYSIS TOOL
 ════════════════════════════════════════════════════════════════════════════════
 ℹ️ Scanning for files to analyze in: .
 ✅ Found 42 files to analyze
@@ -142,5 +142,9 @@ Use pre-commit hooks for linting/formatting.
 This project is licensed under the [MIT License](LICENSE).
 
 ---
+
+## Author
+
+Created and maintained by [@mattivi](https://github.com/mattivi) and the [codetok community](https://github.com/mattivi/codetok/graphs/contributors).
 
 > Made with ❤️ by the codetok community.
