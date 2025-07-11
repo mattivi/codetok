@@ -1,10 +1,11 @@
 """Tests for the config module."""
 
 import pytest
+
 from codetok.config import Config
 
 
-def test_config_default_values():
+def test_config_default_values() -> None:
     """Test that config has sensible default values."""
     config = Config()
 
@@ -21,10 +22,10 @@ def test_config_default_values():
     assert config.exclude_patterns is None
     assert config.respect_gitignore is True
     assert config.generate_charts is False
-    assert config.max_workers > 0
+    assert config.max_workers is not None and config.max_workers > 0
 
 
-def test_config_custom_values():
+def test_config_custom_values() -> None:
     """Test config with custom values and non-existent path raises ValueError."""
     custom_excludes = {".custom", "build"}
     with pytest.raises(ValueError, match="Analysis path does not exist"):
@@ -43,7 +44,7 @@ def test_config_custom_values():
         )
 
 
-def test_config_exclude_dirs_none():
+def test_config_exclude_dirs_none() -> None:
     """Test that exclude_dirs gets populated when None."""
     config = Config(exclude_dirs=None)
 
@@ -52,7 +53,7 @@ def test_config_exclude_dirs_none():
     assert len(config.exclude_dirs) > 0
 
 
-def test_config_validation():
+def test_config_validation() -> None:
     """Test configuration validation."""
     with pytest.raises(ValueError, match="max_workers must be at least 1"):
         Config(max_workers=0)

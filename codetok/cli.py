@@ -1,10 +1,10 @@
 """Command-line interface for codetok."""
 
 import argparse
-from typing import Optional, List
+from typing import List, Optional
 
-from .config import Config
 from .analyzer import CodeAnalyzer
+from .config import Config
 
 
 def create_parser() -> argparse.ArgumentParser:

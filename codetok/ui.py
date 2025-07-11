@@ -26,7 +26,7 @@ class Icons:
     FOLDER = "📁"
     SEARCH = "🔍"
     STATS = "📊"
-    TOKEN = "🔤"
+    TOKEN = "🔤"  # nosec
     SIZE = "💾"
     LINES = "📝"
     SUCCESS = "✅"
@@ -50,7 +50,7 @@ class Logger:
     """
 
     @staticmethod
-    def header(text: str, icon: str = Icons.STATS):
+    def header(text: str, icon: str = Icons.STATS) -> None:
         """Print a main header section.
 
         Args:
@@ -63,7 +63,7 @@ class Logger:
         print(f"{Colors.HEADER}{Colors.BOLD}{line}{Colors.ENDC}")
 
     @staticmethod
-    def section(text: str, icon: str = Icons.CATEGORY):
+    def section(text: str, icon: str = Icons.CATEGORY) -> None:
         """Print a subsection header.
 
         Args:
@@ -76,7 +76,7 @@ class Logger:
         print(f"{Colors.OKBLUE}{line}{Colors.ENDC}")
 
     @staticmethod
-    def info(text: str, icon: str = Icons.INFO):
+    def info(text: str, icon: str = Icons.INFO) -> None:
         """Print an informational message.
 
         Args:
@@ -86,7 +86,7 @@ class Logger:
         print(f"{Colors.OKCYAN}{icon} {text}{Colors.ENDC}")
 
     @staticmethod
-    def success(text: str, icon: str = Icons.SUCCESS):
+    def success(text: str, icon: str = Icons.SUCCESS) -> None:
         """Print a success message.
 
         Args:
@@ -96,7 +96,7 @@ class Logger:
         print(f"{Colors.OKGREEN}{icon} {text}{Colors.ENDC}")
 
     @staticmethod
-    def warning(text: str, icon: str = Icons.WARNING):
+    def warning(text: str, icon: str = Icons.WARNING) -> None:
         """Print a warning message.
 
         Args:
@@ -106,7 +106,7 @@ class Logger:
         print(f"{Colors.WARNING}{icon} {text}{Colors.ENDC}")
 
     @staticmethod
-    def error(text: str, icon: str = Icons.ERROR):
+    def error(text: str, icon: str = Icons.ERROR) -> None:
         """Print an error message.
 
         Args:
@@ -116,7 +116,7 @@ class Logger:
         print(f"{Colors.FAIL}{icon} {text}{Colors.ENDC}")
 
     @staticmethod
-    def stat(label: str, value: str, icon: str = Icons.BULLET):
+    def stat(label: str, value: str, icon: str = Icons.BULLET) -> None:
         """Print a formatted statistic.
 
         Args:

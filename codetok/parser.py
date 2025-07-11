@@ -1,24 +1,24 @@
 """File parsing and line counting for codetok."""
 
-import logging
-from pathlib import Path
 from dataclasses import dataclass
-from typing import Tuple, Dict, Set
+from pathlib import Path
+from typing import Set, Tuple, Optional, Dict
 
 from .ui import Logger
 
 try:
     import tiktoken
+    from tiktoken import Encoding
 
-    openai_tokenizer = tiktoken.get_encoding("cl100k_base")
+    openai_tokenizer: Optional[Encoding] = tiktoken.get_encoding("cl100k_base")
 except ImportError:
     openai_tokenizer = None
     Logger.warning("tiktoken not available. Token counting will be disabled.")
 
 try:
-    from pygments import lex
-    from pygments.lexers import get_lexer_by_name, guess_lexer_for_filename
-    from pygments.token import Token
+    from pygments import lex  # type: ignore
+    from pygments.lexers import get_lexer_by_name  # type: ignore
+    from pygments.token import Token  # type: ignore
 
     HAS_PYGMENTS = True
 except ImportError:
@@ -59,7 +59,7 @@ class FileStats:
 
 
 # File type mappings
-CODE_EXTENSIONS = {
+CODE_EXTENSIONS: Dict[str, str] = {
     ".py": "Python",
     ".js": "JavaScript",
     ".jsx": "React JSX",
@@ -85,7 +85,7 @@ CODE_EXTENSIONS = {
 }
 """Mapping of code file extensions to language names."""
 
-DOCUMENTATION_EXTENSIONS = {
+DOCUMENTATION_EXTENSIONS: Dict[str, str] = {
     ".md": "Markdown",
     ".txt": "Plain Text",
     ".rst": "reStructuredText",
@@ -94,7 +94,7 @@ DOCUMENTATION_EXTENSIONS = {
 }
 """Mapping of documentation file extensions to format names."""
 
-CONFIG_EXTENSIONS = {
+CONFIG_EXTENSIONS: Dict[str, str] = {
     ".json": "JSON",
     ".yaml": "YAML",
     ".yml": "YAML",

@@ -2,8 +2,8 @@
 
 import os
 from dataclasses import dataclass, field
-from typing import Set, Optional, List
 from pathlib import Path
+from typing import List, Optional, Set
 
 
 @dataclass
@@ -25,7 +25,7 @@ class Config:
     """If True, suppress console output."""
 
     # File filtering
-    exclude_dirs: Set[str] = field(
+    exclude_dirs: Optional[Set[str]] = field(
         default_factory=lambda: {
             ".next",
             "node_modules",
@@ -86,7 +86,7 @@ class Config:
     generate_charts: bool = False
     """Generate visual charts (requires matplotlib)."""
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         """Initialize defaults and validate configuration."""
         if self.max_workers is None:
             self.max_workers = min(32, (os.cpu_count() or 1) + 4)
@@ -128,7 +128,7 @@ class Config:
                 "obj",
             }
 
-        if self.max_workers < 1:
+        if self.max_workers is not None and self.max_workers < 1:
             raise ValueError("max_workers must be at least 1")
 
         if not Path(self.path).exists():

@@ -1,11 +1,13 @@
 """Tests for the CLI module."""
 
+from unittest.mock import MagicMock, patch
+
 import pytest
-from unittest.mock import patch, MagicMock
+
 from codetok.cli import create_parser, main
 
 
-def test_create_parser():
+def test_create_parser() -> None:
     """Test that the parser is created correctly."""
     parser = create_parser()
 
@@ -18,7 +20,7 @@ def test_create_parser():
     assert args.no_progress is False
 
 
-def test_parser_with_arguments():
+def test_parser_with_arguments() -> None:
     """Test parser with various arguments."""
     parser = create_parser()
 
@@ -41,7 +43,7 @@ def test_parser_with_arguments():
     assert args.no_progress is True
 
 
-def test_parser_short_arguments():
+def test_parser_short_arguments() -> None:
     """Test parser with short arguments."""
     parser = create_parser()
 
@@ -52,7 +54,7 @@ def test_parser_short_arguments():
 
 
 @patch("codetok.cli.CodeAnalyzer")
-def test_main_function(mock_analyzer_class):
+def test_main_function(mock_analyzer_class: MagicMock) -> None:
     """Test the main function creates correct config and runs analyzer."""
     mock_analyzer = MagicMock()
     mock_analyzer_class.return_value = mock_analyzer

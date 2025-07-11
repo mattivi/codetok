@@ -2,9 +2,10 @@
 
 import json
 from datetime import datetime
-from typing import Dict, List
-from dataclasses import asdict
 from pathlib import Path
+from typing import Dict, List, Union, Any, DefaultDict, cast
+from collections import defaultdict
+from dataclasses import dataclass
 
 try:
     import matplotlib.pyplot as plt
@@ -14,13 +15,21 @@ except ImportError:
     HAS_MATPLOTLIB = False
 
 from .parser import (
-    FileStats,
     CODE_EXTENSIONS,
-    DOCUMENTATION_EXTENSIONS,
     CONFIG_EXTENSIONS,
+    DOCUMENTATION_EXTENSIONS,
+    FileStats,
 )
-from .ui import Logger, Icons, Colors
+from .ui import Colors, Icons, Logger
 from .utils import format_number, format_size
+
+# Dataclass for numeric extension stats
+@dataclass
+class ExtStats:
+    files: int = 0
+    lines: int = 0
+    tokens: int = 0
+    size_bytes: int = 0
 
 
 class CategoryStats:
@@ -75,11 +84,11 @@ def categorize_files(file_stats: List[FileStats]) -> Dict[str, CategoryStats]:
 class JSONFormatter:
     """Format results as JSON."""
 
-    def format(self, categories: Dict[str, CategoryStats], output_file: str):
+    def format(self, categories: Dict[str, CategoryStats], output_file: str) -> None:
         """Save analysis results to JSON file."""
         timestamp = datetime.now().isoformat()
 
-        report = {
+        report: Dict[str, Any] = {
             "timestamp": timestamp,
             "analysis_info": {
                 "tokenizer": "cl100k_base",
@@ -103,7 +112,8 @@ class JSONFormatter:
 
         for name, category in categories.items():
             # Calculate extension breakdown
-            ext_breakdown = {}
+            extension_names = {}  # type: Dict[str, str]
+            ext_stats: Dict[str, ExtStats] = {}
             for file_stat in category.files:
                 ext = file_stat.extension
                 ext_name = (
@@ -112,18 +122,13 @@ class JSONFormatter:
                     or CONFIG_EXTENSIONS.get(ext)
                     or ext
                 )
-                if ext not in ext_breakdown:
-                    ext_breakdown[ext] = {
-                        "name": ext_name,
-                        "files": 0,
-                        "lines": 0,
-                        "tokens": 0,
-                        "size_bytes": 0,
-                    }
-                ext_breakdown[ext]["files"] += 1
-                ext_breakdown[ext]["lines"] += file_stat.lines_total
-                ext_breakdown[ext]["tokens"] += file_stat.tokens
-                ext_breakdown[ext]["size_bytes"] += file_stat.size_bytes
+                extension_names[ext] = ext_name
+                if ext not in ext_stats:
+                    ext_stats[ext] = ExtStats()
+                ext_stats[ext].files += 1
+                ext_stats[ext].lines += file_stat.lines_total
+                ext_stats[ext].tokens += file_stat.tokens
+                ext_stats[ext].size_bytes += file_stat.size_bytes
 
             report["categories"][name] = {
                 "icon": category.icon,
@@ -136,7 +141,15 @@ class JSONFormatter:
                 "total_size_bytes": category.total_size_bytes,
                 "avg_lines_per_file": category.avg_lines_per_file,
                 "avg_tokens_per_file": category.avg_tokens_per_file,
-                "extension_breakdown": ext_breakdown,
+                "extension_breakdown": {
+                    ext: {
+                        "name": extension_names[ext],
+                        "files": stats.files,
+                        "lines": stats.lines,
+                        "tokens": stats.tokens,
+                        "size_bytes": stats.size_bytes,
+                    } for ext, stats in ext_stats.items()
+                },
                 "files": [
                     {
                         "path": str(f.path),
@@ -163,12 +176,12 @@ class JSONFormatter:
 class ConsoleFormatter:
     """Format results for console output."""
 
-    def format(self, categories: Dict[str, CategoryStats]):
+    def format(self, categories: Dict[str, CategoryStats]) -> None:
         """Print analysis results to console."""
         self._print_token_analysis(categories)
         self._print_detailed_analysis(categories)
 
-    def _print_token_analysis(self, categories: Dict[str, CategoryStats]):
+    def _print_token_analysis(self, categories: Dict[str, CategoryStats]) -> None:
         """Print detailed token analysis."""
         Logger.header("TOKEN ANALYSIS REPORT", Icons.TOKEN)
 
@@ -193,7 +206,7 @@ class ConsoleFormatter:
                     f"{format_number(category.total_tokens)} tokens ({percentage:.1f}%)",
                 )
 
-    def _print_detailed_analysis(self, categories: Dict[str, CategoryStats]):
+    def _print_detailed_analysis(self, categories: Dict[str, CategoryStats]) -> None:
         """Print detailed category analysis."""
         Logger.header("DETAILED CATEGORY ANALYSIS", Icons.STATS)
 
@@ -219,7 +232,7 @@ class ConsoleFormatter:
         for category in categories.values():
             self._print_category_stats(category)
 
-    def _print_category_stats(self, category: CategoryStats):
+    def _print_category_stats(self, category: CategoryStats) -> None:
         """Print comprehensive statistics for a category."""
         if category.total_files == 0:
             Logger.warning(f"No {category.name.lower()} found.", Icons.WARNING)
@@ -256,7 +269,7 @@ class ChartFormatter:
     def __init__(self, output_dir: str):
         self.output_dir = Path(output_dir).parent  # Save charts alongside JSON
 
-    def format(self, categories: Dict[str, CategoryStats]):
+    def format(self, categories: Dict[str, CategoryStats]) -> None:
         """Generate charts if matplotlib is available."""
         if not HAS_MATPLOTLIB:
             Logger.warning("matplotlib not installed. Skipping chart generation.")

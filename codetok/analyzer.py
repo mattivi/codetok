@@ -1,24 +1,25 @@
 """Core analysis engine for codetok."""
 
-import os
 import fnmatch
-from pathlib import Path
+import os
 from concurrent.futures import ThreadPoolExecutor
-from typing import List, Dict
+from pathlib import Path
+from typing import Dict, List
+
 import pathspec
 
 try:
-    from tqdm import tqdm
+    from tqdm import tqdm  # type: ignore
 
     HAS_TQDM = True
 except ImportError:
     HAS_TQDM = False
 
 from .config import Config
-from .parser import FileStats, process_file, get_all_extensions
-from .formatters import categorize_files, CategoryStats, JSONFormatter, ConsoleFormatter
+from .formatters import CategoryStats, ConsoleFormatter, JSONFormatter, categorize_files
+from .parser import FileStats, get_all_extensions, process_file
+from .ui import Icons, Logger
 from .utils import should_exclude_directory
-from .ui import Logger, Icons
 
 
 class CodeAnalyzer:
@@ -66,8 +67,9 @@ class CodeAnalyzer:
             return {}
 
         Logger.success(f"Found {len(files_to_process):,} files to analyze")
+        exclude_dirs = self.config.exclude_dirs or set()
         Logger.info(
-            f"Excluded directories: {', '.join(sorted(list(self.config.exclude_dirs)[:10]))}{'...' if len(self.config.exclude_dirs) > 10 else ''}"
+            f"Excluded directories: {', '.join(sorted(list(exclude_dirs)[:10]))}{'...' if len(exclude_dirs) > 10 else ''}"
         )
 
         # Process files
@@ -86,8 +88,8 @@ class CodeAnalyzer:
         Logger.success(f"Detailed report saved to: {self.config.output_file}")
 
         # Generate charts if requested
-        if self.config.generate_charts:
-            ChartFormatter(self.config.output_file).format(categories)
+        # if self.config.generate_charts:
+        #     ChartFormatter(self.config.output_file).format(categories)
 
         Logger.header("ANALYSIS COMPLETE", Icons.SUCCESS)
         Logger.success("Token counting and codebase analysis finished successfully!")
@@ -118,7 +120,7 @@ class CodeAnalyzer:
             root_path = Path(root)
 
             # Skip excluded directories
-            if should_exclude_directory(root_path, self.config.exclude_dirs):
+            if should_exclude_directory(root_path, self.config.exclude_dirs or set()):
                 dirs.clear()  # Prevent walking into excluded directories
                 continue
 

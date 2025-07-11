@@ -1,15 +1,15 @@
 """Tests for the parser module."""
 
 import tempfile
-import pytest
 from pathlib import Path
-from codetok.parser import count_lines_by_type, process_file, get_all_extensions
+
+from codetok.parser import count_lines_by_type, get_all_extensions, process_file
 
 
 class TestLineCountingByType:
     """Test line counting for different file types."""
 
-    def test_python_comment_detection(self):
+    def test_python_comment_detection(self) -> None:
         """Test Python comment detection."""
         python_code = '''# This is a comment
 def hello():
@@ -26,7 +26,7 @@ def hello():
         assert comment_lines == 3
         assert blank_lines == 0
 
-    def test_javascript_comment_detection(self):
+    def test_javascript_comment_detection(self) -> None:
         """Test JavaScript comment detection."""
         js_code = """// This is a comment
 function hello() {
@@ -42,7 +42,7 @@ function hello() {
         assert comment_lines == 3
         assert blank_lines == 0
 
-    def test_markdown_detection(self):
+    def test_markdown_detection(self) -> None:
         """Test Markdown detection."""
         markdown_code = """# Header
 
@@ -58,7 +58,7 @@ More content.
         assert comment_lines == 0
         assert blank_lines == 2
 
-    def test_unknown_extension(self):
+    def test_unknown_extension(self) -> None:
         """Test handling of unknown extensions."""
         unknown_code = """line 1
 line 2
@@ -72,7 +72,7 @@ line 4
         assert comment_lines == 0
         assert blank_lines == 1
 
-    def test_multiline_comments(self):
+    def test_multiline_comments(self) -> None:
         """Test detection of multiline comments."""
         js_code = """/*
 Multi
@@ -88,7 +88,7 @@ function test() {}
         assert comment_lines == 5
         assert blank_lines == 0
 
-    def test_mixed_content(self):
+    def test_mixed_content(self) -> None:
         """Test mixed code and comments."""
         py_code = '''def func():
     # comment
@@ -109,7 +109,7 @@ function test() {}
 class TestFileProcessing:
     """Test file processing functionality."""
 
-    def test_process_empty_file(self):
+    def test_process_empty_file(self) -> None:
         """Test processing empty file."""
         with tempfile.NamedTemporaryFile(mode="w", suffix=".py", delete=False) as f:
             f.write("")
@@ -127,7 +127,7 @@ class TestFileProcessing:
         finally:
             Path(temp_path).unlink()
 
-    def test_process_python_file(self):
+    def test_process_python_file(self) -> None:
         """Test processing Python file."""
         python_content = '''# Test file
 def hello():
@@ -153,7 +153,7 @@ if __name__ == "__main__":
         finally:
             Path(temp_path).unlink()
 
-    def test_process_binary_file(self):
+    def test_process_binary_file(self) -> None:
         """Test handling of binary files."""
         with tempfile.NamedTemporaryFile(mode="wb", suffix=".bin", delete=False) as f:
             f.write(b"\x00\x01\x02")
@@ -170,7 +170,7 @@ if __name__ == "__main__":
         finally:
             Path(temp_path).unlink()
 
-    def test_encoding_fallback(self):
+    def test_encoding_fallback(self) -> None:
         """Test encoding fallback works."""
         content = " café ".encode("latin-1")
         with tempfile.NamedTemporaryFile(mode="wb", suffix=".txt", delete=False) as f:
@@ -186,7 +186,7 @@ if __name__ == "__main__":
             Path(temp_path).unlink()
 
 
-def test_get_all_extensions():
+def test_get_all_extensions() -> None:
     """Test that get_all_extensions returns the expected extensions."""
     extensions = get_all_extensions()
 

@@ -1,24 +1,27 @@
-import pytest
-import os
 import json
+import os
 import tempfile
 from pathlib import Path
+
+import pytest
+from typing import Any
+
 from codetok.analyzer import CodeAnalyzer
 from codetok.config import Config
-from codetok.parser import count_lines_by_type, process_file, FileStats
 from codetok.formatters import categorize_files
+from codetok.parser import FileStats, count_lines_by_type, process_file
 
 
-def run_analysis(**kwargs):
+def run_analysis(**kwargs: Any) -> None:
     config = Config(**kwargs)
     analyzer = CodeAnalyzer(config)
-    return analyzer.analyze()
+    analyzer.analyze()
 
 
 class TestLineCountingByType:
     """Test line counting for different file types."""
 
-    def test_python_comment_detection(self):
+    def test_python_comment_detection(self) -> None:
         """Test Python comment detection."""
         python_code = '''#!/usr/bin/env python3
 # This is a comment
@@ -37,7 +40,7 @@ def hello():
         assert comment_lines == 4
         assert blank_lines == 0
 
-    def test_javascript_comment_detection(self):
+    def test_javascript_comment_detection(self) -> None:
         """Test JavaScript comment detection."""
         js_code = """// This is a comment
 /* Multi-line
@@ -54,7 +57,7 @@ function hello() {
         assert comment_lines == 5
         assert blank_lines == 0
 
-    def test_css_comment_detection(self):
+    def test_css_comment_detection(self) -> None:
         """Test CSS comment detection."""
         css_code = """/* Main styles */
 body {
@@ -70,7 +73,7 @@ body {
         assert comment_lines == 2
         assert blank_lines == 0
 
-    def test_html_comment_detection(self):
+    def test_html_comment_detection(self) -> None:
         """Test HTML comment detection."""
         html_code = """<!DOCTYPE html>
 <!-- This is a comment -->
@@ -92,7 +95,7 @@ body {
 class TestFileProcessing:
     """Test file processing functionality."""
 
-    def test_process_empty_file(self):
+    def test_process_empty_file(self) -> None:
         """Test processing empty file."""
         with tempfile.NamedTemporaryFile(mode="w", suffix=".py", delete=False) as f:
             f.write("")
@@ -108,7 +111,7 @@ class TestFileProcessing:
         finally:
             os.unlink(temp_path)
 
-    def test_process_python_file(self):
+    def test_process_python_file(self) -> None:
         """Test processing Python file."""
         python_content = '''# Test file
 def hello():
@@ -133,7 +136,7 @@ if __name__ == "__main__":
         finally:
             os.unlink(temp_path)
 
-    def test_process_binary_file_gracefully(self):
+    def test_process_binary_file_gracefully(self) -> None:
         """Test that binary files are handled gracefully."""
         with tempfile.NamedTemporaryFile(mode="wb", suffix=".bin", delete=False) as f:
             f.write(b"\x00\x01\x02\x03")
@@ -150,7 +153,7 @@ if __name__ == "__main__":
 class TestDirectoryFiltering:
     """Test directory filtering functionality."""
 
-    def test_should_process_directory(self):
+    def test_should_process_directory(self) -> None:
         """Test directory processing decisions."""
         # Should process
         assert True  # No longer using should_process_directory
@@ -171,7 +174,7 @@ class TestDirectoryFiltering:
 class TestFileCategorization:
     """Test file categorization functionality."""
 
-    def test_categorize_files(self):
+    def test_categorize_files(self) -> None:
         """Test file categorization."""
         # Create mock file stats
         file_stats = [
@@ -205,7 +208,7 @@ class TestFileCategorization:
 class TestIntegration:
     """Integration tests for the full analysis."""
 
-    def test_analyze_small_project(self):
+    def test_analyze_small_project(self) -> None:
         """Test analyzing a small project."""
         with tempfile.TemporaryDirectory() as temp_dir:
             # Create a small test project
@@ -265,7 +268,7 @@ This is a test project.
             assert data["categories"]["documentation"]["total_files"] == 1
             assert data["categories"]["config"]["total_files"] == 1
 
-    def test_analyze_with_excluded_directories(self):
+    def test_analyze_with_excluded_directories(self) -> None:
         """Test that excluded directories are properly ignored."""
         with tempfile.TemporaryDirectory() as temp_dir:
             project_path = Path(temp_dir)
@@ -302,7 +305,7 @@ This is a test project.
 class TestEdgeCases:
     """Test edge cases and error conditions."""
 
-    def test_nonexistent_directory(self):
+    def test_nonexistent_directory(self) -> None:
         """Test analysis of non-existent directory."""
         with tempfile.TemporaryDirectory() as temp_dir:
             nonexistent_path = Path(temp_dir) / "nonexistent"
@@ -314,7 +317,7 @@ class TestEdgeCases:
                     json_only=True,
                 )
 
-    def test_permission_denied_file(self):
+    def test_permission_denied_file(self) -> None:
         """Test handling of files with permission issues."""
         with tempfile.TemporaryDirectory() as temp_dir:
             project_path = Path(temp_dir)
