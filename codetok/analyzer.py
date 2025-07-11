@@ -16,12 +16,7 @@ except ImportError:
     HAS_TQDM = False
 
 from .config import Config
-from .formatters import (
-    CategoryStats,
-    ConsoleFormatter,
-    JSONFormatter,
-    categorize_files,
-)
+from .formatters import CategoryStats, ConsoleFormatter, JSONFormatter, categorize_files
 from .parser import FileStats, get_all_extensions, process_file
 from .ui import Icons, Logger
 from .utils import should_exclude_directory
@@ -92,18 +87,14 @@ class CodeAnalyzer:
 
         Logger.info("Saving detailed analysis report...")
         self.json_formatter.format(categories, self.config.output_file)
-        Logger.success(
-            f"Detailed report saved to: {self.config.output_file}"
-        )
+        Logger.success(f"Detailed report saved to: {self.config.output_file}")
 
         # Generate charts if requested
         # if self.config.generate_charts:
         #     ChartFormatter(self.config.output_file).format(categories)
 
         Logger.header("ANALYSIS COMPLETE", Icons.SUCCESS)
-        Logger.success(
-            "Token counting and codebase analysis finished successfully!"
-        )
+        Logger.success("Token counting and codebase analysis finished successfully!")
 
         return categories
 
@@ -125,17 +116,13 @@ class CodeAnalyzer:
         gitignore_spec = None
         if gitignore_path.exists():
             with open(gitignore_path, "r") as f:
-                gitignore_spec = pathspec.PathSpec.from_lines(
-                    "gitwildmatch", f
-                )
+                gitignore_spec = pathspec.PathSpec.from_lines("gitwildmatch", f)
 
         for root, dirs, files in os.walk(base_path):
             root_path = Path(root)
 
             # Skip excluded directories
-            if should_exclude_directory(
-                root_path, self.config.exclude_dirs or set()
-            ):
+            if should_exclude_directory(root_path, self.config.exclude_dirs or set()):
                 dirs.clear()  # Prevent walking into excluded directories
                 continue
 
@@ -205,18 +192,14 @@ class CodeAnalyzer:
                 with ThreadPoolExecutor(
                     max_workers=self.config.max_workers
                 ) as executor:
-                    file_stats = list(
-                        executor.map(process_file, files_to_process)
-                    )
+                    file_stats = list(executor.map(process_file, files_to_process))
         else:
             # Sequential processing
             Logger.info("Processing files sequentially...")
 
             if HAS_TQDM and self.config.progress_bar:
                 # Use tqdm progress bar
-                for file_path in tqdm(
-                    files_to_process, desc="Processing files"
-                ):
+                for file_path in tqdm(files_to_process, desc="Processing files"):
                     file_stats.append(process_file(file_path))
             else:
                 # Sequential without progress bar

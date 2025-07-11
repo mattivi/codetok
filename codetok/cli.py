@@ -11,7 +11,8 @@ def create_parser() -> argparse.ArgumentParser:
     """Create and configure the argument parser."""
     parser = argparse.ArgumentParser(
         prog="codetok",
-        description="codetok: Analyze codebase for SLOC, comments, blank lines, and OpenAI tokens.",
+        description="codetok: Analyze codebase for SLOC, comments, blank lines, and "
+        "OpenAI tokens.",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
@@ -84,9 +85,7 @@ Examples:
         help="Generate visual charts of the analysis (requires matplotlib)",
     )
 
-    parser.add_argument(
-        "--version", action="version", version="%(prog)s 0.1.0"
-    )
+    parser.add_argument("--version", action="version", version="%(prog)s 0.1.0")
 
     return parser
 

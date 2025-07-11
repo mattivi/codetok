@@ -23,9 +23,7 @@ try:
     HAS_PYGMENTS = True
 except ImportError:
     HAS_PYGMENTS = False
-    Logger.warning(
-        "pygments not available. Using simplified comment detection."
-    )
+    Logger.warning("pygments not available. Using simplified comment detection.")
 
 
 @dataclass
@@ -241,9 +239,7 @@ def count_lines_by_type(
         ):
             comment_lines += 1
         # HTML/XML comments (simplified)
-        elif extension in {".html", ".htm", ".xml"} and stripped.startswith(
-            "<!--"
-        ):
+        elif extension in {".html", ".htm", ".xml"} and stripped.startswith("<!--"):
             comment_lines += 1
         # CSS comments (simplified)
         elif extension in {".css", ".scss"} and stripped.startswith("/*"):
@@ -280,9 +276,7 @@ def process_file(file_path: Path) -> FileStats:
                 with open(file_path, "r", encoding="latin-1") as f:
                     content = f.read()
             except UnicodeDecodeError:
-                with open(
-                    file_path, "r", encoding="utf-8", errors="ignore"
-                ) as f:
+                with open(file_path, "r", encoding="utf-8", errors="ignore") as f:
                     content = f.read()
 
         extension = file_path.suffix.lower()

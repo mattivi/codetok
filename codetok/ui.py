@@ -59,9 +59,7 @@ class Logger:
         """
         line = "═" * 80
         print(f"\n{Colors.HEADER}{Colors.BOLD}{line}{Colors.ENDC}")
-        print(
-            f"{Colors.HEADER}{Colors.BOLD}{icon} {text.upper()}{Colors.ENDC}"
-        )
+        print(f"{Colors.HEADER}{Colors.BOLD}{icon} {text.upper()}{Colors.ENDC}")
         print(f"{Colors.HEADER}{Colors.BOLD}{line}{Colors.ENDC}")
 
     @staticmethod
@@ -127,5 +125,6 @@ class Logger:
             icon: Optional icon to display.
         """
         print(
-            f"  {Colors.OKCYAN}{icon} {Colors.BOLD}{label}:{Colors.ENDC} {Colors.OKGREEN}{value}{Colors.ENDC}"
+            f"  {Colors.OKCYAN}{icon} {Colors.BOLD}{label}:{Colors.ENDC} "
+            f"{Colors.OKGREEN}{value}{Colors.ENDC}"
         )

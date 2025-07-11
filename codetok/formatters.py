@@ -84,9 +84,7 @@ def categorize_files(file_stats: List[FileStats]) -> Dict[str, CategoryStats]:
 class JSONFormatter:
     """Format results as JSON."""
 
-    def format(
-        self, categories: Dict[str, CategoryStats], output_file: str
-    ) -> None:
+    def format(self, categories: Dict[str, CategoryStats], output_file: str) -> None:
         """Save analysis results to JSON file."""
         timestamp = datetime.now().isoformat()
 
@@ -279,9 +277,7 @@ class ChartFormatter:
     def format(self, categories: Dict[str, CategoryStats]) -> None:
         """Generate charts if matplotlib is available."""
         if not HAS_MATPLOTLIB:
-            Logger.warning(
-                "matplotlib not installed. Skipping chart generation."
-            )
+            Logger.warning("matplotlib not installed. Skipping chart generation.")
             return
 
         Logger.info("Generating analysis charts...")

@@ -97,9 +97,7 @@ class TestFileProcessing:
 
     def test_process_empty_file(self) -> None:
         """Test processing empty file."""
-        with tempfile.NamedTemporaryFile(
-            mode="w", suffix=".py", delete=False
-        ) as f:
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".py", delete=False) as f:
             f.write("")
             temp_path = f.name
 
@@ -123,9 +121,7 @@ def hello():
 if __name__ == "__main__":
     hello()
 '''
-        with tempfile.NamedTemporaryFile(
-            mode="w", suffix=".py", delete=False
-        ) as f:
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".py", delete=False) as f:
             f.write(python_content)
             temp_path = f.name
 
@@ -142,9 +138,7 @@ if __name__ == "__main__":
 
     def test_process_binary_file_gracefully(self) -> None:
         """Test that binary files are handled gracefully."""
-        with tempfile.NamedTemporaryFile(
-            mode="wb", suffix=".bin", delete=False
-        ) as f:
+        with tempfile.NamedTemporaryFile(mode="wb", suffix=".bin", delete=False) as f:
             f.write(b"\x00\x01\x02\x03")
             temp_path = f.name
 
@@ -287,9 +281,7 @@ This is a test project.
             # Create excluded directory with file
             excluded_dir = project_path / "node_modules"
             excluded_dir.mkdir()
-            (excluded_dir / "package.py").write_text(
-                "print('should be ignored')"
-            )
+            (excluded_dir / "package.py").write_text("print('should be ignored')")
 
             # Run analysis
             output_file = project_path / "analysis.json"
@@ -322,9 +314,7 @@ class TestEdgeCases:
         with tempfile.TemporaryDirectory() as temp_dir:
             nonexistent_path = Path(temp_dir) / "nonexistent"
             output_file = Path(temp_dir) / "analysis.json"
-            with pytest.raises(
-                ValueError, match="Analysis path does not exist"
-            ):
+            with pytest.raises(ValueError, match="Analysis path does not exist"):
                 run_analysis(
                     path=str(nonexistent_path),
                     output_file=str(output_file),
